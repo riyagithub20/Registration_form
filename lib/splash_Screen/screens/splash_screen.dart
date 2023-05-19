@@ -19,9 +19,10 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 3), () {
-      // Replace this with your desired route
-      Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (BuildContext context) => RegistrationScreen()));
+      Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (BuildContext context) => RegistrationScreen()));
     });
   }
 
@@ -33,20 +34,17 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // FlutterLogo(
-            //   size: 100.0,
-            // ),
-             Image.asset(
-                  "assets/image/Ripple-1s-200px.gif",
-                  fit: BoxFit.contain,
-                ),
+            Image.asset(
+              "assets/image/Ripple-1s-200px.gif",
+              fit: BoxFit.contain,
+            ),
             const SizedBox(height: 16.0),
             const Text(
               'Welcome',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
-                  color: Color(0xfffe4e59),
+                color: Color(0xfffe4e59),
               ),
             ),
           ],
@@ -55,5 +53,3 @@ class _SplashScreenState extends State<SplashScreen> {
     );
   }
 }
-
-

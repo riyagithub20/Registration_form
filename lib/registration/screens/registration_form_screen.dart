@@ -246,9 +246,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           return 'Please enter a valid phone number';
                         }
 
-                        // if (validatePhoneNumber(value)) {
-                        //   return "Phone Number Should of 10 Digits ";
-                        // }
                         return null;
                       },
                     ),
@@ -286,13 +283,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           )),
-                      // InkWell(
-                      //     onTap: () {
-                      //       if (filePath != null) {
-                      //         fileSelected = null;
-                      //       }
-                      //     },
-                      //     child: const Icon(Icons.close)),
                     ],
                   ),
                 ),
@@ -318,14 +308,15 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         }
 
                         OrangeLoaderOverlay.hide();
+                        // ignore: use_build_context_synchronously
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                               content: Text("Registration successfull"),
                               backgroundColor:
                                   Colors.orange, // Custom background color
                               elevation: 8.0),
                         );
-                        // Navigator.pus(contehxt, RouteNames.previewRegistration);
+
                         // ignore: use_build_context_synchronously
                         Navigator.push(
                           context,

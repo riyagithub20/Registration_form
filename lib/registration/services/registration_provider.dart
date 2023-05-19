@@ -7,7 +7,6 @@ import 'package:path/path.dart' as path;
 import 'package:sign_up/registration/models/user_model.dart';
 
 class RegistrationProvider extends ChangeNotifier {
-  // final databaseReference = FirebaseDatabase.instance.reference();
   final collection = FirebaseFirestore.instance.collection("user");
 
   Future<bool> register(UserModel userModel, File? filePath) async {
@@ -33,6 +32,6 @@ class RegistrationProvider extends ChangeNotifier {
     final snapshot = await collection.doc(userId).get();
     userDetails = UserModel.fromJson(snapshot.data()!);
 
-   return true;
+    return true;
   }
 }
