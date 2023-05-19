@@ -20,7 +20,7 @@ class RouteGenerator {
               return RegistrationScreen();
 
              case RouteNames.previewRegistration:
-              return PreviewRegistration();
+              return PreviewRegistration(userId: "",url: "",);
 
                  default:
             return const SizedBox();

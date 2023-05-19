@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class UserModel {
     String? firstName;
     String? lastname;
-    DateTime? dob;
+    String? dob;
     String? email;
     String? phoneno;
 

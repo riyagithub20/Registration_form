@@ -33,15 +33,20 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            FlutterLogo(
-              size: 100.0,
-            ),
-            SizedBox(height: 16.0),
-            Text(
+            // FlutterLogo(
+            //   size: 100.0,
+            // ),
+             Image.asset(
+                  "assets/image/Ripple-1s-200px.gif",
+                  fit: BoxFit.contain,
+                ),
+            const SizedBox(height: 16.0),
+            const Text(
               'Welcome',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
+                  color: Color(0xfffe4e59),
               ),
             ),
           ],

@@ -4,7 +4,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+import 'package:sign_up/registration/screens/preview_registration_screen.dart';
 import 'package:sign_up/registration/services/mail_service_provider.dart';
 import 'package:sign_up/registration/services/registration_provider.dart';
 import 'package:sign_up/registration/widgets/snackbar.dart';
@@ -151,9 +153,12 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           onConfirm: (date) {
                             setState(() {
                               _selectedDate = date;
-                              dateController.text =
-                                  _selectedDate.toString().split(' ')[0];
+
+                              // dateController.text =
+                              //     _selectedDate.toString().split(' ')[0];
                               _errorText = validateDate(_selectedDate!);
+                              dateController.text = DateFormat('dd MMMM yyyy')
+                                  .format(_selectedDate!);
                             });
                           },
                           currentTime: _selectedDate,
@@ -277,17 +282,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                       SizedBox(
                           width: 200,
                           child: Text(
-                            '${filePath ?? 'None'}',
+                            filePath?.split("/").last ?? "NO FILE SELECTED YET",
                             maxLines: 2,
                             overflow: TextOverflow.ellipsis,
                           )),
-                      InkWell(
-                        onTap: () {
-                          if(filePath!=null){
-                          fileSelected=null;
-                          }
-                        },
-                        child: const Icon(Icons.close)),
+                      // InkWell(
+                      //     onTap: () {
+                      //       if (filePath != null) {
+                      //         fileSelected = null;
+                      //       }
+                      //     },
+                      //     child: const Icon(Icons.close)),
                     ],
                   ),
                 ),
@@ -299,23 +304,36 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         _formKey.currentState!.save();
                         OrangeLoaderOverlay.show(context);
                         UserModel userModel = UserModel(
-                            dob:  _selectedDate,
+                            dob: dateController.text,
                             email: emailController.text,
                             firstName: firstName.text,
                             lastname: lastName.text,
                             phoneno: _phoneNumberController.text);
                         if (await context
                             .read<RegistrationProvider>()
-                            .register(userModel,File(fileSelected!.path!))) {
+                            .register(userModel, File(fileSelected!.path!))) {
                           context
                               .read<MailService>()
                               .sendEmail(emailController.text);
-                      
                         }
-                       
 
                         OrangeLoaderOverlay.hide();
-                      Navigator.pushNamed(context, RouteNames.previewRegistration);
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                              content: Text("Registration successfull"),
+                              backgroundColor:
+                                  Colors.orange, // Custom background color
+                              elevation: 8.0),
+                        );
+                        // Navigator.pus(contehxt, RouteNames.previewRegistration);
+                        // ignore: use_build_context_synchronously
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => PreviewRegistration(
+                                  userId: _phoneNumberController.text,
+                                  url: fileSelected!.path!)),
+                        );
                       }
                     },
                     style: ButtonStyle(
