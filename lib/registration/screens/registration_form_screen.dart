@@ -152,6 +152,16 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                           if (value!.isEmpty) {
                             return 'Please enter Date of Birth';
                           }
+
+                           if (value.isNotEmpty) {
+                           final dateValidation =  validateDate(_selectedDate!);
+                           if(dateValidation!=null) {
+                            return "You must be at least 18 years old.";
+                           }
+
+                          }
+                          
+                           
                           return null;
                         },
                         readOnly: true,
@@ -381,7 +391,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   ///VALIDATIONS FOR THE TEXT FIELDS
-  validateDate(DateTime selectedDate) {
+  String? validateDate(DateTime selectedDate) {
     final currentDate = DateTime.now();
     final validDate =
         DateTime(currentDate.year - 18, currentDate.month, currentDate.day);
@@ -392,6 +402,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
 
     return null;
   }
+
+  
+
    
   bool isEmailValid(String email) {
     final emailRegex = RegExp(
