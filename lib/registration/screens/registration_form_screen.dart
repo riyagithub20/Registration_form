@@ -245,6 +245,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         if (!isPhoneNumberValid(value)) {
                           return 'Please enter a valid phone number';
                         }
+                          if (!validatePhoneNumber(value)) {
+                          return 'Phone number should be 10 digits';
+                        }
 
                         return null;
                       },
@@ -378,7 +381,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   }
 
   bool validatePhoneNumber(String phoneNumber) {
-    RegExp regex = RegExp(r'^[0-9]{8,}$');
+    RegExp regex = RegExp(r'^[0-9]{10}$');
 
     if (regex.hasMatch(phoneNumber)) {
       return true; // Phone number is valid
