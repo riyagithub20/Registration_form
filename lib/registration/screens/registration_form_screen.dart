@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:file_picker/file_picker.dart';
@@ -298,7 +299,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         _formKey.currentState!.save();
                         OrangeLoaderOverlay.show(context);
                         UserModel userModel = UserModel(
-                            dob: _selectedDate,
+                            dob:  _selectedDate,
                             email: emailController.text,
                             firstName: firstName.text,
                             lastname: lastName.text,

@@ -1,15 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class UserModel {
-   final String? firstName;
-   final String? lastname;
-   final DateTime? dob;
-   final String? email;
-   final String? phoneno;
+    String? firstName;
+    String? lastname;
+    DateTime? dob;
+    String? email;
+    String? phoneno;
 
    UserModel({this.dob,this.email,this.lastname,this.firstName,this.phoneno});
 
+ 
+ 
+   UserModel.fromJson(Map<String, dynamic> json) {
+      firstName = json['first_name'];
+      lastname = json['last_name'];
+      dob = json['dob'];
+      email = json['email'];
+      phoneno = json['phone_no'];
 
+    }
+
+  
  Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (firstName != null) {
@@ -29,5 +40,8 @@ class UserModel {
     }
     return data;
   }
+
+  
+  
 
 }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:provider/provider.dart';
+import 'package:sign_up/registration/services/registration_provider.dart';
 
 class PreviewRegistration extends StatefulWidget {
   const PreviewRegistration({super.key});
@@ -10,6 +12,12 @@ class PreviewRegistration extends StatefulWidget {
 }
 
 class _PreviewRegistrationState extends State<PreviewRegistration> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<RegistrationProvider>().fetchData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

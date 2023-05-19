@@ -28,13 +28,13 @@ class RegistrationProvider extends ChangeNotifier{
   return downloadUrl;
 }
 
-
+  UserModel userDetails = UserModel();
 Future<void> fetchData() async {
   final collection = FirebaseFirestore.instance.collection('user');
-  final snapshot = await collection.get();
-  snapshot.docs.forEach((doc) {
-    print(doc.data());
-  });
+  final snapshot = await collection.doc("8348747151").get();
+    userDetails = UserModel.fromJson( snapshot.data()!);
+     
+     print(userDetails);
 }
 
 
