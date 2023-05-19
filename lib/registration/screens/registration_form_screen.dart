@@ -37,7 +37,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   Future<void> _openFileExplorer() async {
     FilePickerResult? result = await FilePicker.platform.pickFiles(
       type: FileType.custom,
-      allowedExtensions: ['pdf', 'doc', 'docx'],
+      allowedExtensions: ['pdf', 'doc'],
     );
 
     if (result != null) {
